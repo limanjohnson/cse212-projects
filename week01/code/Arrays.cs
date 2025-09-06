@@ -1,3 +1,5 @@
+using Microsoft.VisualBasic;
+
 public static class Arrays
 {
     /// <summary>
@@ -6,14 +8,25 @@ public static class Arrays
     /// integer greater than 0.
     /// </summary>
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
+
     public static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        // 1. Create an array of doubles of the length specified by parameter 'length'
+        // 2. Use a loop to iterate from 0 to length - 1
+        // 3. For each iteration, add the appropriate multiple of 'number' to the array
+        // 4. Return the array
 
-        return []; // replace this return statement with your own
+        var multiples = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            multiples[i] = number * (i + 1);
+        }
+
+        return multiples;
     }
 
     /// <summary>
@@ -29,5 +42,24 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        // 1. check that amount is a valid number
+        // 2. Get the index of the last 'amount' numbers in the list
+        // 3. Remove the last 'amount' numbers from the list
+        // 4. Insert the removed numbers at the beginning of the list
+        if (amount < 1 || amount > data.Count)
+        {
+            // These numbers will not allow for the function to work as intended and will result in an error
+            return;
+        }
+
+        // Get the number of the last index
+
+        List<int> lastNumbers = data.GetRange(data.Count - amount, amount);
+
+        // Remove lastNumber
+        data.RemoveRange(data.Count - amount, amount);
+
+        // insert lastNumbers at the beginning of the list
+        data.InsertRange(0, lastNumbers);
     }
 }
