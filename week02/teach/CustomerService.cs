@@ -1,9 +1,13 @@
-﻿/// <summary>
+﻿using System.Net.Sockets;
+
+
+/// <summary>
 /// Maintain a Customer Service Queue.  Allows new customers to be 
 /// added and allows customers to be serviced.
 /// </summary>
 public class CustomerService {
-    public static void Run() {
+    public static void Run()
+    {
         // Example code to see what's in the customer service queue:
         // var cs = new CustomerService(10);
         // Console.WriteLine(cs);
@@ -11,24 +15,52 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: When creating a Customer Service with a negative size/zero size, max size should be set to 10.
+        // Expected Result: Max size is 10
         Console.WriteLine("Test 1");
+        var tc1 = new CustomerService(0);
+        Console.WriteLine(tc1._maxSize);
 
         // Defect(s) Found: 
 
         Console.WriteLine("=================");
 
         // Test 2
-        // Scenario: 
-        // Expected Result: 
-        Console.WriteLine("Test 2");
+        // Scenario: When que is fill, new customers can not be added.
+        // Expected Result: Error message
+        // Console.WriteLine("Test 2");
+        // var tc2 = new CustomerService(2);
+        // tc2.AddNewCustomer();
+        // tc2.AddNewCustomer();
+        // tc2.AddNewCustomer();
+        // Console.WriteLine(tc2);
 
-        // Defect(s) Found: 
+        // Defect(s) Found: Incorrect operator used to check if queue is full
 
-        Console.WriteLine("=================");
+        // Console.WriteLine("=================");
 
         // Add more Test Cases As Needed Below
+
+        // Test 3
+        // Scenario: If queue is empty, error message should be displayed.
+        // Expected Result: Error message "No customers in queue to serve."
+        // Console.WriteLine("Test 3");
+        // var tc3 = new CustomerService(1);
+        // tc3.ServeCustomer();
+
+        // Defect(s) Found:
+
+        // Console.WriteLine("=================");
+
+        // Test 4
+        // Scenario: serve customer from queue
+        // Expected Result: first customer in queue is served
+        Console.WriteLine("Test 4");
+        var tc4 = new CustomerService(3);
+        tc4.AddNewCustomer();
+        tc4.AddNewCustomer();
+        tc4.ServeCustomer();
+        Console.WriteLine(tc4);
     }
 
     private readonly List<Customer> _queue = new();
@@ -67,7 +99,7 @@ public class CustomerService {
     /// </summary>
     private void AddNewCustomer() {
         // Verify there is room in the service queue
-        if (_queue.Count > _maxSize) {
+        if (_queue.Count >= _maxSize) {
             Console.WriteLine("Maximum Number of Customers in Queue.");
             return;
         }
