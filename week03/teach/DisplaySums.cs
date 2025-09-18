@@ -29,5 +29,16 @@
     /// <param name="numbers">array of integers</param>
     private static void DisplaySumPairs(int[] numbers) {
         // TODO Problem 2 - This should print pairs of numbers in the given array
+        var seen = new HashSet<int>();
+
+        foreach (var n in numbers)
+        {
+            int target = 10 - n;
+            if (seen.Contains(target))
+            {
+                Console.WriteLine($"{n} {target}");
+            }
+            seen.Add(n);
+        }
     }
 }
