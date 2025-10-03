@@ -37,7 +37,7 @@ public class LinkedList : IEnumerable<int>
 
         newNode.Prev = _tail;
 
-        if (_tail is not null)
+        /* if (_tail is not null)
         {
             _tail.Next = newNode;
             _tail = newNode;
@@ -46,6 +46,20 @@ public class LinkedList : IEnumerable<int>
         else
         {
             _head = newNode;
+            _tail = newNode;
+        }
+
+        */
+
+    if (_tail is null)
+        {
+            _head = newNode;
+            _tail = newNode;
+        }
+        else
+        {
+            newNode.Prev = _tail;
+            _tail.Next = newNode;
             _tail = newNode;
         }
     }
@@ -83,7 +97,7 @@ public class LinkedList : IEnumerable<int>
         if (_head == _tail)
         {
             _head = null;
-            _tail = null;
+            _tail = null; 
         }
         
         else if (_tail is not null)
